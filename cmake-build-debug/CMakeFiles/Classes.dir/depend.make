@@ -4,14 +4,20 @@
 CMakeFiles/Classes.dir/Classes/Empresa.cpp.obj: \
  ../Classes/Empresa.cpp \
  ../Classes/Empresa.h \
- ../Classes/Estafeta.h \
- ../Classes/Servico.h
+ ../Classes/Encomenda.h \
+ ../Classes/Estafeta.h
+CMakeFiles/Classes.dir/Classes/Encomenda.cpp.obj: \
+ ../Classes/Encomenda.cpp \
+ ../Classes/Encomenda.h
 CMakeFiles/Classes.dir/Classes/Estafeta.cpp.obj: \
  ../Classes/Estafeta.cpp \
  ../Classes/Estafeta.h
-CMakeFiles/Classes.dir/Classes/Servico.cpp.obj: \
- ../Classes/Servico.cpp \
- ../Classes/Servico.h
+CMakeFiles/Classes.dir/Classes/Menu.cpp.obj: \
+ ../Classes/Empresa.h \
+ ../Classes/Encomenda.h \
+ ../Classes/Estafeta.h \
+ ../Classes/Menu.cpp \
+ ../Classes/Menu.h
 CMakeFiles/Classes.dir/Classes/tests.cpp.obj: \
  ../lib/googletest-master/googletest/include/gtest/gtest-death-test.h \
  ../lib/googletest-master/googletest/include/gtest/gtest-matchers.h \
@@ -55,4 +61,8 @@ CMakeFiles/Classes.dir/main.cpp.obj: \
  ../lib/googletest-master/googletest/include/gtest/internal/gtest-port.h \
  ../lib/googletest-master/googletest/include/gtest/internal/gtest-string.h \
  ../lib/googletest-master/googletest/include/gtest/internal/gtest-type-util.h \
+ ../Classes/Empresa.h \
+ ../Classes/Encomenda.h \
+ ../Classes/Estafeta.h \
+ ../Classes/Menu.h \
  ../main.cpp

@@ -6,8 +6,9 @@ cmake_policy(SET CMP0009 NEW)
 file(GLOB NEW_GLOB LIST_DIRECTORIES true "C:/Users/HP/Desktop/P1_DA/Classes/*.cpp")
 set(OLD_GLOB
   "C:/Users/HP/Desktop/P1_DA/Classes/Empresa.cpp"
+  "C:/Users/HP/Desktop/P1_DA/Classes/Encomenda.cpp"
   "C:/Users/HP/Desktop/P1_DA/Classes/Estafeta.cpp"
-  "C:/Users/HP/Desktop/P1_DA/Classes/Servico.cpp"
+  "C:/Users/HP/Desktop/P1_DA/Classes/Menu.cpp"
   "C:/Users/HP/Desktop/P1_DA/Classes/tests.cpp"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")

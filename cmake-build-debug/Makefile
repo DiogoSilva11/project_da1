@@ -250,6 +250,30 @@ Classes/Empresa.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Classes.dir\build.make CMakeFiles/Classes.dir/Classes/Empresa.cpp.s
 .PHONY : Classes/Empresa.cpp.s
 
+Classes/Encomenda.obj: Classes/Encomenda.cpp.obj
+.PHONY : Classes/Encomenda.obj
+
+# target to build an object file
+Classes/Encomenda.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Classes.dir\build.make CMakeFiles/Classes.dir/Classes/Encomenda.cpp.obj
+.PHONY : Classes/Encomenda.cpp.obj
+
+Classes/Encomenda.i: Classes/Encomenda.cpp.i
+.PHONY : Classes/Encomenda.i
+
+# target to preprocess a source file
+Classes/Encomenda.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Classes.dir\build.make CMakeFiles/Classes.dir/Classes/Encomenda.cpp.i
+.PHONY : Classes/Encomenda.cpp.i
+
+Classes/Encomenda.s: Classes/Encomenda.cpp.s
+.PHONY : Classes/Encomenda.s
+
+# target to generate assembly for a file
+Classes/Encomenda.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Classes.dir\build.make CMakeFiles/Classes.dir/Classes/Encomenda.cpp.s
+.PHONY : Classes/Encomenda.cpp.s
+
 Classes/Estafeta.obj: Classes/Estafeta.cpp.obj
 .PHONY : Classes/Estafeta.obj
 
@@ -274,29 +298,29 @@ Classes/Estafeta.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Classes.dir\build.make CMakeFiles/Classes.dir/Classes/Estafeta.cpp.s
 .PHONY : Classes/Estafeta.cpp.s
 
-Classes/Servico.obj: Classes/Servico.cpp.obj
-.PHONY : Classes/Servico.obj
+Classes/Menu.obj: Classes/Menu.cpp.obj
+.PHONY : Classes/Menu.obj
 
 # target to build an object file
-Classes/Servico.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Classes.dir\build.make CMakeFiles/Classes.dir/Classes/Servico.cpp.obj
-.PHONY : Classes/Servico.cpp.obj
+Classes/Menu.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Classes.dir\build.make CMakeFiles/Classes.dir/Classes/Menu.cpp.obj
+.PHONY : Classes/Menu.cpp.obj
 
-Classes/Servico.i: Classes/Servico.cpp.i
-.PHONY : Classes/Servico.i
+Classes/Menu.i: Classes/Menu.cpp.i
+.PHONY : Classes/Menu.i
 
 # target to preprocess a source file
-Classes/Servico.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Classes.dir\build.make CMakeFiles/Classes.dir/Classes/Servico.cpp.i
-.PHONY : Classes/Servico.cpp.i
+Classes/Menu.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Classes.dir\build.make CMakeFiles/Classes.dir/Classes/Menu.cpp.i
+.PHONY : Classes/Menu.cpp.i
 
-Classes/Servico.s: Classes/Servico.cpp.s
-.PHONY : Classes/Servico.s
+Classes/Menu.s: Classes/Menu.cpp.s
+.PHONY : Classes/Menu.s
 
 # target to generate assembly for a file
-Classes/Servico.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Classes.dir\build.make CMakeFiles/Classes.dir/Classes/Servico.cpp.s
-.PHONY : Classes/Servico.cpp.s
+Classes/Menu.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Classes.dir\build.make CMakeFiles/Classes.dir/Classes/Menu.cpp.s
+.PHONY : Classes/Menu.cpp.s
 
 Classes/tests.obj: Classes/tests.cpp.obj
 .PHONY : Classes/tests.obj
@@ -366,12 +390,15 @@ help:
 	@echo ... Classes/Empresa.obj
 	@echo ... Classes/Empresa.i
 	@echo ... Classes/Empresa.s
+	@echo ... Classes/Encomenda.obj
+	@echo ... Classes/Encomenda.i
+	@echo ... Classes/Encomenda.s
 	@echo ... Classes/Estafeta.obj
 	@echo ... Classes/Estafeta.i
 	@echo ... Classes/Estafeta.s
-	@echo ... Classes/Servico.obj
-	@echo ... Classes/Servico.i
-	@echo ... Classes/Servico.s
+	@echo ... Classes/Menu.obj
+	@echo ... Classes/Menu.i
+	@echo ... Classes/Menu.s
 	@echo ... Classes/tests.obj
 	@echo ... Classes/tests.i
 	@echo ... Classes/tests.s

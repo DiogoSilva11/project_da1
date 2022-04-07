@@ -93,10 +93,24 @@ CMakeFiles/Classes.dir/Classes/Empresa.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Classes.dir/Classes/Empresa.cpp.s"
 	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\HP\Desktop\P1_DA\Classes\Empresa.cpp -o CMakeFiles\Classes.dir\Classes\Empresa.cpp.s
 
+CMakeFiles/Classes.dir/Classes/Encomenda.cpp.obj: CMakeFiles/Classes.dir/flags.make
+CMakeFiles/Classes.dir/Classes/Encomenda.cpp.obj: CMakeFiles/Classes.dir/includes_CXX.rsp
+CMakeFiles/Classes.dir/Classes/Encomenda.cpp.obj: ../Classes/Encomenda.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\HP\Desktop\P1_DA\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Classes.dir/Classes/Encomenda.cpp.obj"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\Classes.dir\Classes\Encomenda.cpp.obj -c C:\Users\HP\Desktop\P1_DA\Classes\Encomenda.cpp
+
+CMakeFiles/Classes.dir/Classes/Encomenda.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Classes.dir/Classes/Encomenda.cpp.i"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\HP\Desktop\P1_DA\Classes\Encomenda.cpp > CMakeFiles\Classes.dir\Classes\Encomenda.cpp.i
+
+CMakeFiles/Classes.dir/Classes/Encomenda.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Classes.dir/Classes/Encomenda.cpp.s"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\HP\Desktop\P1_DA\Classes\Encomenda.cpp -o CMakeFiles\Classes.dir\Classes\Encomenda.cpp.s
+
 CMakeFiles/Classes.dir/Classes/Estafeta.cpp.obj: CMakeFiles/Classes.dir/flags.make
 CMakeFiles/Classes.dir/Classes/Estafeta.cpp.obj: CMakeFiles/Classes.dir/includes_CXX.rsp
 CMakeFiles/Classes.dir/Classes/Estafeta.cpp.obj: ../Classes/Estafeta.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\HP\Desktop\P1_DA\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Classes.dir/Classes/Estafeta.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\HP\Desktop\P1_DA\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Classes.dir/Classes/Estafeta.cpp.obj"
 	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\Classes.dir\Classes\Estafeta.cpp.obj -c C:\Users\HP\Desktop\P1_DA\Classes\Estafeta.cpp
 
 CMakeFiles/Classes.dir/Classes/Estafeta.cpp.i: cmake_force
@@ -107,24 +121,24 @@ CMakeFiles/Classes.dir/Classes/Estafeta.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Classes.dir/Classes/Estafeta.cpp.s"
 	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\HP\Desktop\P1_DA\Classes\Estafeta.cpp -o CMakeFiles\Classes.dir\Classes\Estafeta.cpp.s
 
-CMakeFiles/Classes.dir/Classes/Servico.cpp.obj: CMakeFiles/Classes.dir/flags.make
-CMakeFiles/Classes.dir/Classes/Servico.cpp.obj: CMakeFiles/Classes.dir/includes_CXX.rsp
-CMakeFiles/Classes.dir/Classes/Servico.cpp.obj: ../Classes/Servico.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\HP\Desktop\P1_DA\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Classes.dir/Classes/Servico.cpp.obj"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\Classes.dir\Classes\Servico.cpp.obj -c C:\Users\HP\Desktop\P1_DA\Classes\Servico.cpp
+CMakeFiles/Classes.dir/Classes/Menu.cpp.obj: CMakeFiles/Classes.dir/flags.make
+CMakeFiles/Classes.dir/Classes/Menu.cpp.obj: CMakeFiles/Classes.dir/includes_CXX.rsp
+CMakeFiles/Classes.dir/Classes/Menu.cpp.obj: ../Classes/Menu.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\HP\Desktop\P1_DA\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Classes.dir/Classes/Menu.cpp.obj"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\Classes.dir\Classes\Menu.cpp.obj -c C:\Users\HP\Desktop\P1_DA\Classes\Menu.cpp
 
-CMakeFiles/Classes.dir/Classes/Servico.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Classes.dir/Classes/Servico.cpp.i"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\HP\Desktop\P1_DA\Classes\Servico.cpp > CMakeFiles\Classes.dir\Classes\Servico.cpp.i
+CMakeFiles/Classes.dir/Classes/Menu.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Classes.dir/Classes/Menu.cpp.i"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\HP\Desktop\P1_DA\Classes\Menu.cpp > CMakeFiles\Classes.dir\Classes\Menu.cpp.i
 
-CMakeFiles/Classes.dir/Classes/Servico.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Classes.dir/Classes/Servico.cpp.s"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\HP\Desktop\P1_DA\Classes\Servico.cpp -o CMakeFiles\Classes.dir\Classes\Servico.cpp.s
+CMakeFiles/Classes.dir/Classes/Menu.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Classes.dir/Classes/Menu.cpp.s"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\HP\Desktop\P1_DA\Classes\Menu.cpp -o CMakeFiles\Classes.dir\Classes\Menu.cpp.s
 
 CMakeFiles/Classes.dir/Classes/tests.cpp.obj: CMakeFiles/Classes.dir/flags.make
 CMakeFiles/Classes.dir/Classes/tests.cpp.obj: CMakeFiles/Classes.dir/includes_CXX.rsp
 CMakeFiles/Classes.dir/Classes/tests.cpp.obj: ../Classes/tests.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\HP\Desktop\P1_DA\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Classes.dir/Classes/tests.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\HP\Desktop\P1_DA\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Classes.dir/Classes/tests.cpp.obj"
 	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\Classes.dir\Classes\tests.cpp.obj -c C:\Users\HP\Desktop\P1_DA\Classes\tests.cpp
 
 CMakeFiles/Classes.dir/Classes/tests.cpp.i: cmake_force
@@ -139,8 +153,9 @@ CMakeFiles/Classes.dir/Classes/tests.cpp.s: cmake_force
 Classes_OBJECTS = \
 "CMakeFiles/Classes.dir/main.cpp.obj" \
 "CMakeFiles/Classes.dir/Classes/Empresa.cpp.obj" \
+"CMakeFiles/Classes.dir/Classes/Encomenda.cpp.obj" \
 "CMakeFiles/Classes.dir/Classes/Estafeta.cpp.obj" \
-"CMakeFiles/Classes.dir/Classes/Servico.cpp.obj" \
+"CMakeFiles/Classes.dir/Classes/Menu.cpp.obj" \
 "CMakeFiles/Classes.dir/Classes/tests.cpp.obj"
 
 # External object files for target Classes
@@ -148,8 +163,9 @@ Classes_EXTERNAL_OBJECTS =
 
 Classes.exe: CMakeFiles/Classes.dir/main.cpp.obj
 Classes.exe: CMakeFiles/Classes.dir/Classes/Empresa.cpp.obj
+Classes.exe: CMakeFiles/Classes.dir/Classes/Encomenda.cpp.obj
 Classes.exe: CMakeFiles/Classes.dir/Classes/Estafeta.cpp.obj
-Classes.exe: CMakeFiles/Classes.dir/Classes/Servico.cpp.obj
+Classes.exe: CMakeFiles/Classes.dir/Classes/Menu.cpp.obj
 Classes.exe: CMakeFiles/Classes.dir/Classes/tests.cpp.obj
 Classes.exe: CMakeFiles/Classes.dir/build.make
 Classes.exe: lib/libgtest_maind.a
@@ -159,7 +175,7 @@ Classes.exe: lib/libgtestd.a
 Classes.exe: CMakeFiles/Classes.dir/linklibs.rsp
 Classes.exe: CMakeFiles/Classes.dir/objects1.rsp
 Classes.exe: CMakeFiles/Classes.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\HP\Desktop\P1_DA\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable Classes.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\HP\Desktop\P1_DA\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable Classes.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\Classes.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

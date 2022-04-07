@@ -1,11 +1,10 @@
 #ifndef P1_DA_EMPRESA_H
 #define P1_DA_EMPRESA_H
 
-#include "Servico.h"
+#include "Encomenda.h"
 #include "Estafeta.h"
 
 #include <iostream>
-#include <list>
 #include <vector>
 
 using namespace std;
@@ -14,17 +13,22 @@ using namespace std;
 
 class Empresa {
 private:
-    list<Servico> pedidos;
+    vector<Encomenda> encomendas;
     vector<Estafeta> estafetas;
 
-    void pedidosRecebidos();
+    void encomendasListadas();
     void estafetasRegistados();
+    void sortEncomendas();
+    void sortEstafetas();
 public:
     Empresa();
 
-    unsigned otimEstafetas(bool &tarefaCompleta, vector<Estafeta> &E, list<Servico> &P);
-    double otimLucro(bool &tarefaCompleta, vector<Estafeta> &E, list<Servico> &P);
-    double otimExpresso(list<Servico> &P);
+    vector<Encomenda> getEncomendas() const;
+    vector<Estafeta> getEstafetas() const;
+
+    unsigned otimEstafetas(bool &tarefaCompleta, vector<Estafeta> &E, vector<Encomenda> &P);
+    double otimLucro(bool &tarefaCompleta, vector<Estafeta> &E, vector<Encomenda> &P);
+    double otimExpresso(bool &tarefaCompleta, vector<Encomenda> &P);
 };
 
 

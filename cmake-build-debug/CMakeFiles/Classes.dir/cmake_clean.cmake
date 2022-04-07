@@ -1,7 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/Classes.dir/Classes/Empresa.cpp.obj"
+  "CMakeFiles/Classes.dir/Classes/Encomenda.cpp.obj"
   "CMakeFiles/Classes.dir/Classes/Estafeta.cpp.obj"
-  "CMakeFiles/Classes.dir/Classes/Servico.cpp.obj"
+  "CMakeFiles/Classes.dir/Classes/Menu.cpp.obj"
   "CMakeFiles/Classes.dir/Classes/tests.cpp.obj"
   "CMakeFiles/Classes.dir/main.cpp.obj"
   "Classes.exe"

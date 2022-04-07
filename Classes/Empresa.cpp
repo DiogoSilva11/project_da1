@@ -5,13 +5,13 @@
 // ---------------------------------------------------------------------------------------------------
 
 Empresa::Empresa() {
-    pedidosRecebidos();
+    encomendasListadas();
     estafetasRegistados();
 }
 
 // ---------------------------------------------------------------------------------------------------
 
-void Empresa::pedidosRecebidos() {
+void Empresa::encomendasListadas() {
     ifstream f;
     f.open("encomendas.txt");
 
@@ -23,7 +23,6 @@ void Empresa::pedidosRecebidos() {
     string firstLine;
     getline(f, firstLine);
 
-    unsigned id = 0;
     string vol, peso, recompensa, duracao;
     double v, p, r, d;
     while (getline(f, vol, ' ')) {
@@ -31,13 +30,12 @@ void Empresa::pedidosRecebidos() {
         getline(f, recompensa, ' ');
         getline(f, duracao, ' ');
 
-        id++;
         v = stod(vol);
         p = stod(peso);
         r = stod(recompensa);
         d = stod(duracao);
-        Servico s(id, v, p, r, d);
-        pedidos.push_back(s);
+        Encomenda e(v, p, r, d);
+        encomendas.push_back(e);
     }
 
     f.close();
@@ -56,50 +54,59 @@ void Empresa::estafetasRegistados() {
     getline(f, firstLine);
 
     string vol, peso, custo;
-    string m;
     double v, p, c;
     while (getline(f, vol, ' ')) {
         getline(f, peso, ' ');
         getline(f, custo, ' ');
 
-        m = "56-PT-08"; // to do: atribuir matriculas unicas a cada elemento
         v = stod(vol);
         p = stod(peso);
         c = stod(custo);
-        Estafeta e(m, v, p, c);
+        Estafeta e(v, p, c);
         estafetas.push_back(e);
     }
 
     f.close();
 }
 
+void Empresa::sortEncomendas() {
+    // to do
+}
+
+void Empresa::sortEstafetas() {
+    // to do
+}
+
 // ---------------------------------------------------------------------------------------------------
 
-unsigned Empresa::otimEstafetas(bool &tarefaCompleta, vector<Estafeta> &e, list<Servico> &s) {
-    /*
-    return do menor numero de estafetas para a entrega de todos os pedidos
-    ou do maior numero de pedidos num dia
-     */
+vector<Encomenda> Empresa::getEncomendas() const {
+    return encomendas;
+}
 
-    // nao considerar o custo dos estafetas
+vector<Estafeta> Empresa::getEstafetas() const {
+    return estafetas;
+}
 
-    // cada estafeta so pode fazer uma jornada por dia
+// ---------------------------------------------------------------------------------------------------
 
-    // maximizar encomendar entregues em cada jornada
+unsigned Empresa::otimEstafetas(bool &tarefaCompleta, vector<Estafeta> &E, vector<Encomenda> &P) {
+    // ordenar estafetas por ordem descendente de capacidade
 
-    // checkar quando a duracao somada das entregas ultrapassar a macro DIA (> 86400)
+    // ordenar encomendas por ordem ascendente
+
+    // ir ocupando carrinhas ao maximo e ir contando as com um counter
 
     return 0;
 }
 
-double Empresa::otimLucro(bool &tarefaCompleta, vector<Estafeta> &E, list<Servico> &P) {
-    // return do lucro feito num dia
+double Empresa::otimLucro(bool &tarefaCompleta, vector<Estafeta> &E, vector<Encomenda> &P) {
+    // to do
 
     return 0.0;
 }
 
-double Empresa::otimExpresso(list<Servico> &P) {
-    // return do tempo medio minimo das entregas num dia
+double Empresa::otimExpresso(bool &tarefaCompleta, vector<Encomenda> &P) {
+    // to do
 
     return 0.0;
 }

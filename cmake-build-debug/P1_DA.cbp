@@ -326,16 +326,22 @@
 		<Unit filename="C:/Users/HP/Desktop/P1_DA/Classes/Empresa.h">
 			<Option target="Classes"/>
 		</Unit>
+		<Unit filename="C:/Users/HP/Desktop/P1_DA/Classes/Encomenda.cpp">
+			<Option target="Classes"/>
+		</Unit>
+		<Unit filename="C:/Users/HP/Desktop/P1_DA/Classes/Encomenda.h">
+			<Option target="Classes"/>
+		</Unit>
 		<Unit filename="C:/Users/HP/Desktop/P1_DA/Classes/Estafeta.cpp">
 			<Option target="Classes"/>
 		</Unit>
 		<Unit filename="C:/Users/HP/Desktop/P1_DA/Classes/Estafeta.h">
 			<Option target="Classes"/>
 		</Unit>
-		<Unit filename="C:/Users/HP/Desktop/P1_DA/Classes/Servico.cpp">
+		<Unit filename="C:/Users/HP/Desktop/P1_DA/Classes/Menu.cpp">
 			<Option target="Classes"/>
 		</Unit>
-		<Unit filename="C:/Users/HP/Desktop/P1_DA/Classes/Servico.h">
+		<Unit filename="C:/Users/HP/Desktop/P1_DA/Classes/Menu.h">
 			<Option target="Classes"/>
 		</Unit>
 		<Unit filename="C:/Users/HP/Desktop/P1_DA/Classes/tests.cpp">
