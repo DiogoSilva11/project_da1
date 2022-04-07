@@ -7,14 +7,17 @@ using namespace std;
 
 class Estafeta {
 private:
-    double volMax, pesoMax, custo;
+    int volMax, pesoMax, custo;
 public:
-    Estafeta(double volMax, double pesoMax, double custo);
+    Estafeta();
+    Estafeta(int volMax, int pesoMax, int custo);
 
-    double getVolMax() const;
-    double getPesoMax() const;
-    double getCusto() const;
+    int getVolMax() const;
+    int getPesoMax() const;
+    int getCusto() const;
 
+    bool operator<(const Estafeta& e) const;
+    bool operator<=(const Estafeta& e) const;
     friend ostream& operator<<(ostream& out, const Estafeta& e);
 };
 

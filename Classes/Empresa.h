@@ -9,8 +9,6 @@
 
 using namespace std;
 
-#define DIA 86400 // number of seconds in a day
-
 class Empresa {
 private:
     vector<Encomenda> encomendas;
@@ -18,8 +16,6 @@ private:
 
     void encomendasListadas();
     void estafetasRegistados();
-    void sortEncomendas();
-    void sortEstafetas();
 public:
     Empresa();
 

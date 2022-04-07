@@ -44,7 +44,7 @@ void Menu::mainMenu() const {
     cout << " ========================================" << endl;
     cout << endl;
 
-    cout << " Escolhe uma opcao:" << endl;
+    cout << " Escolha uma opcao:" << endl;
     cout << " [1] Ver encomendas" << endl;
     cout << " [2] Ver estafetas" << endl;
     cout << " [3] Otimizacao do numero de estafetas" << endl;
@@ -56,8 +56,8 @@ void Menu::mainMenu() const {
 
 void Menu::encomendas() {
     cout << endl;
-    cout << "Encomendas:" << endl;
-    cout << "(vol peso recompensa duracao)" << endl;
+    cout << "[Encomendas]\n\n";
+    cout << "volume   peso   recompensa   duracao" << endl;
     for (const auto &e : empresa.getEncomendas())
         cout << e;
 
@@ -66,8 +66,8 @@ void Menu::encomendas() {
 
 void Menu::estafetas() {
     cout << endl;
-    cout << "Estafetas:" << endl;
-    cout << "(volMax pesoMax custo)" << endl;
+    cout << "[Estafetas]\n\n";
+    cout << "volMax   pesoMax   custo" << endl;
     for (const auto &e : empresa.getEstafetas())
         cout << e;
 

@@ -7,15 +7,18 @@ using namespace std;
 
 class Encomenda {
 private:
-    double vol, peso, recompensa, duracao;
+    int vol, peso, recompensa, duracao;
 public:
-    Encomenda(double vol, double peso, double recompensa, double duracao);
+    Encomenda();
+    Encomenda(int vol, int peso, int recompensa, int duracao);
 
-    double getVol() const;
-    double getPeso() const;
-    double getRecompensa() const;
-    double getDuracao() const;
+    int getVol() const;
+    int getPeso() const;
+    int getRecompensa() const;
+    int getDuracao() const;
 
+    bool operator<(const Encomenda& e) const;
+    bool operator<=(const Encomenda& e) const;
     friend ostream& operator<<(ostream& out, const Encomenda& e);
 };
 

@@ -6,29 +6,11 @@
 
 #IncludeRegexTransform: 
 
-C:/Users/HP/Desktop/P1_DA/Classes/Empresa.h
-Encomenda.h
-C:/Users/HP/Desktop/P1_DA/Classes/Encomenda.h
+C:/Users/HP/Desktop/P1_DA/Classes/Estafeta.cpp
 Estafeta.h
 C:/Users/HP/Desktop/P1_DA/Classes/Estafeta.h
-iostream
--
-vector
--
-
-C:/Users/HP/Desktop/P1_DA/Classes/Encomenda.h
-iostream
--
 
 C:/Users/HP/Desktop/P1_DA/Classes/Estafeta.h
 iostream
 -
-
-C:/Users/HP/Desktop/P1_DA/Classes/Menu.cpp
-Menu.h
-C:/Users/HP/Desktop/P1_DA/Classes/Menu.h
-
-C:/Users/HP/Desktop/P1_DA/Classes/Menu.h
-Empresa.h
-C:/Users/HP/Desktop/P1_DA/Classes/Empresa.h
 
