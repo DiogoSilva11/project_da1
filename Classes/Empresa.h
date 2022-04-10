@@ -9,6 +9,8 @@
 
 using namespace std;
 
+#define HOR_COMERCIAL 28800 // segundos em 8h (9:00 - 17:00)
+
 class Empresa {
 private:
     vector<Encomenda> encomendas;
@@ -23,7 +25,7 @@ public:
     vector<Estafeta> getEstafetas() const;
 
     unsigned otimEstafetas(bool &tarefaCompleta);
-    double otimLucro(bool &tarefaCompleta, vector<Estafeta> &E, vector<Encomenda> &P);
+    int otimLucro(bool &tarefaCompleta);
     double otimExpresso(bool &tarefaCompleta, vector<Encomenda> &P);
 };
 

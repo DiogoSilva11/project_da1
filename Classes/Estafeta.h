@@ -12,6 +12,7 @@ class Estafeta {
 private:
     string matricula;
     int volMax, pesoMax, custo;
+    int restoVol, restoPeso;
     list<Encomenda> carga;
 public:
     Estafeta();
@@ -21,6 +22,8 @@ public:
     int getVolMax() const;
     int getPesoMax() const;
     int getCusto() const;
+    int getRestoVol() const;
+    int getRestoPeso() const;
     list<Encomenda> getCarga() const;
 
     void addEncomenda(const Encomenda &e);

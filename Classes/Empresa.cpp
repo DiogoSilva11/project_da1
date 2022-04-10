@@ -125,11 +125,11 @@ void merge(vector<T> &v, vector<T> &tmpArr, int leftPos, int rightPos, int right
 // ---------------------------------------------------------------------------------------------------
 
 bool compCapacidade(const Estafeta &e1, const Estafeta &e2) {
-    return e1.getVolMax() >= e2.getVolMax();
+    return (e1.getVolMax() + e1.getPesoMax()) > (e2.getVolMax() + e2.getPesoMax());
 }
 
 bool compCarga(const Encomenda &e1, const Encomenda &e2) {
-    return e1.getVol() >= e2.getVol();
+    return (e1.getVol() + e1.getPeso()) > (e2.getVol() + e2.getPeso());
 }
 
 unsigned Empresa::otimEstafetas(bool &tarefaCompleta) {
@@ -143,7 +143,6 @@ unsigned Empresa::otimEstafetas(bool &tarefaCompleta) {
 
     tarefaCompleta = false;
     int num = 0, eTotal = (int)estafetas.size(), pTotal = (int)encomendas.size();
-    vector<pair<int, int>> sobra(eTotal);
 
     for (int i = 0; i < pTotal; i++) {
         if (i == pTotal - 1)
@@ -156,25 +155,20 @@ unsigned Empresa::otimEstafetas(bool &tarefaCompleta) {
             int v = encomendas[i].getVol(), p = encomendas[i].getPeso();
 
             for (int j = 0; j < num; j++) {
-                bool fit = (sobra[j].first >= v) && (sobra[j].second >= p);
-                if (fit && (sobra[j].first - v < minVol) && (sobra[j].second - p < minPeso)) {
+                int restoV = estafetas[j].getRestoVol(), restoP = estafetas[j].getRestoPeso();
+                if ((restoV >= v) && (restoP >= p) && (restoV - v < minVol) && (restoP - p < minPeso)) {
                     carrinha = j;
-                    minVol = sobra[j].first - v;
-                    minPeso = sobra[j].second - p;
+                    minVol = restoV - v;
+                    minPeso = restoP - p;
                 }
             }
 
             if ((minVol == INT_MAX/2) && (minPeso == INT_MAX/2)) {
                 estafetas[num].addEncomenda(encomendas[i]);
-                sobra[num].first = estafetas[num].getVolMax() - v;
-                sobra[num].second = estafetas[num].getPesoMax() - p;
                 num++;
             }
-            else {
+            else
                 estafetas[carrinha].addEncomenda(encomendas[i]);
-                sobra[carrinha].first -= v;
-                sobra[carrinha].second -= p;
-            }
         }
     }
 
@@ -183,34 +177,43 @@ unsigned Empresa::otimEstafetas(bool &tarefaCompleta) {
 
 // ---------------------------------------------------------------------------------------------------
 
-double Empresa::otimLucro(bool &tarefaCompleta, vector<Estafeta> &E, vector<Encomenda> &P) {
-    sort(estafetas.begin(), estafetas.end(),
-         [](const Estafeta &e1, const Estafeta &e2)
-         {
-             return e1.getCusto() < e2.getCusto();
-         });
-
-    sort(encomendas.begin(), encomendas.end(),
-         [](const Encomenda &e1, const Encomenda &e2)
-         {
-             return e1.getRecompensa() > e2.getRecompensa();
-         });
+int Empresa::otimLucro(bool &tarefaCompleta) {
+    for (auto e : estafetas)
+        e.esvaziar();
 
     // to do
 
-    return 0.0;
+    return 0;
+}
+
+// ---------------------------------------------------------------------------------------------------
+
+bool compDuracao(const Encomenda &e1, const Encomenda &e2) {
+    return e1.getDuracao() <= e2.getDuracao();
 }
 
 double Empresa::otimExpresso(bool &tarefaCompleta, vector<Encomenda> &P) {
-    sort(encomendas.begin(), encomendas.end(),
-         [](const Encomenda &e1, const Encomenda &e2)
-         {
-             return e1.getDuracao() < e2.getDuracao();
-         });
+    P.clear();
+    mergeSort(encomendas, compDuracao);
 
-    // to do
+    tarefaCompleta = false;
+    int total = 0, s = 0, m = 0;
+    for (int i = 0; i < (int)encomendas.size(); i++) {
+        if (i == (int)encomendas.size() - 1)
+            tarefaCompleta = true;
 
-    return 0.0;
+        if (s + encomendas[i].getDuracao() > HOR_COMERCIAL)
+            break;
+        else {
+            total++;
+            s += encomendas[i].getDuracao();
+            m += s;
+            P.push_back(encomendas[i]);
+        }
+    }
+
+    double r = m * 1.0, t = total * 1.0;
+    return r / t;
 }
 
 // ---------------------------------------------------------------------------------------------------

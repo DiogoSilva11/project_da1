@@ -1,8 +1,10 @@
 #include "Menu.h"
 
+#include <cmath>
+
 // ---------------------------------------------------------------------------------------------------
 
-Menu::Menu() {}
+Menu::Menu() = default;
 
 // ---------------------------------------------------------------------------------------------------
 
@@ -75,14 +77,8 @@ void Menu::estafetas() {
 }
 
 void Menu::otimEstafetas() {
-    cout << endl;
-
     bool tarefa = false;
     unsigned numEstafetas = empresa.otimEstafetas(tarefa);
-
-    cout << "Numero minimo de estafetas: " << numEstafetas << endl;
-    string completo = tarefa ? "sim" : "nao";
-    cout << "Pedidos todos entregues: " << completo << endl;
 
     cout << "\n[Estafetas]\n";
     for (const auto &e : empresa.getEstafetas()) {
@@ -94,15 +90,17 @@ void Menu::otimEstafetas() {
         }
     }
 
+    cout << endl << "Numero minimo de estafetas: " << numEstafetas << endl;
+    string completo = tarefa ? "sim" : "nao";
+    cout << "Pedidos todos entregues: " << completo << endl;
+
     goBack();
 }
 
 void Menu::otimLucro() {
     double lucro;
     bool tarefa = false;
-    vector<Estafeta> estafetasUsados;
-    vector<Encomenda> encomendasEntregues;
-    lucro = empresa.otimLucro(tarefa, estafetasUsados, encomendasEntregues);
+    lucro = empresa.otimLucro(tarefa);
 
     cout << endl << "Valor maximo de lucro: " << lucro << endl;
 
@@ -115,7 +113,20 @@ void Menu::otimExpresso() {
     vector<Encomenda> encomendasEntregues;
     tempo = empresa.otimExpresso(tarefa, encomendasEntregues);
 
-    cout << endl << "Tempo medio minimo para entregas expresso: " << tempo << endl;
+    cout << "\n[Encomendas]\n";
+    for (const auto &e : encomendasEntregues) {
+        cout << "Dur: " << e.getDuracao() << endl;
+    }
+
+    int seg, hrs, min;
+    seg = (int)(round(tempo));
+    min = seg / 60;
+    hrs = min / 60;
+
+    cout << endl << "Tempo medio minimo de entregas expresso: " << tempo;
+    cout << " (" << (int)(hrs) << ":" << (int)(min % 60) << ":" << (int)(seg % 60) << ")" << endl;
+    string completo = tarefa ? "sim" : "nao";
+    cout << "Pedidos todos entregues: " << completo << endl;
 
     goBack();
 }
