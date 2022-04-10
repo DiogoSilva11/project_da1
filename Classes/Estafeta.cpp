@@ -65,14 +65,6 @@ void Estafeta::esvaziar() {
 }
 
 // ---------------------------------------------------------------------------------------------------
-/*
-bool Estafeta::operator<(const Estafeta &e) const {
-    return volMax > e.volMax; // criterio de capacidade??
-}
-*/
-bool Estafeta::operator<=(const Estafeta &e) const {
-    return volMax >= e.volMax; // criterio de capacidade??
-}
 
 ostream& operator<<(ostream& out, const Estafeta& e){
     string vol = to_string(e.volMax), peso = to_string(e.pesoMax), custo = to_string(e.custo);

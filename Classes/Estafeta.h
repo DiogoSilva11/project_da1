@@ -29,8 +29,6 @@ public:
     void addEncomenda(const Encomenda &e);
     void esvaziar();
 
-    //bool operator<(const Estafeta& e) const;
-    bool operator<=(const Estafeta& e) const;
     friend ostream& operator<<(ostream& out, const Estafeta& e);
 };
 

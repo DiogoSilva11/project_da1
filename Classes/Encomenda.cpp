@@ -35,14 +35,6 @@ int Encomenda::getDuracao() const {
 }
 
 // ---------------------------------------------------------------------------------------------------
-/*
-bool Encomenda::operator<(const Encomenda &e) const {
-    return vol > e.vol; // criterio de carga??
-}
-*/
-bool Encomenda::operator<=(const Encomenda &e) const {
-    return vol >= e.vol; // criterio de carga??
-}
 
 ostream& operator<<(ostream& out, const Encomenda& e){
     string vol = to_string(e.vol), peso = to_string(e.peso);
