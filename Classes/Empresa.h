@@ -22,7 +22,7 @@ public:
     vector<Encomenda> getEncomendas() const;
     vector<Estafeta> getEstafetas() const;
 
-    unsigned otimEstafetas(bool &tarefaCompleta, vector<Estafeta> &E, vector<Encomenda> &P);
+    unsigned otimEstafetas(bool &tarefaCompleta);
     double otimLucro(bool &tarefaCompleta, vector<Estafeta> &E, vector<Encomenda> &P);
     double otimExpresso(bool &tarefaCompleta, vector<Encomenda> &P);
 };

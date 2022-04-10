@@ -29,7 +29,7 @@ void Empresa::encomendasListadas() {
     while (getline(f, vol, ' ')) {
         getline(f, peso, ' ');
         getline(f, recompensa, ' ');
-        getline(f, duracao, ' ');
+        getline(f, duracao);
 
         v = stoi(vol);
         p = stoi(peso);
@@ -58,7 +58,7 @@ void Empresa::estafetasRegistados() {
     int v, p, c;
     while (getline(f, vol, ' ')) {
         getline(f, peso, ' ');
-        getline(f, custo, ' ');
+        getline(f, custo);
 
         v = stoi(vol);
         p = stoi(peso);
@@ -82,56 +82,106 @@ vector<Estafeta> Empresa::getEstafetas() const {
 
 // ---------------------------------------------------------------------------------------------------
 
-template <class T>
-void mergeSort(vector<T> &v);
-template <class T>
-void mergeSort(vector<T> &v, vector<T> &tmpArr, int left, int right);
-template <class T>
-void merge(vector<T> &v, vector<T> &tmpArr, int leftPos, int rightPos, int rightEnd);
+template <typename T, class Comparable>
+void mergeSort(vector<T> &v, Comparable comp);
+template <typename T, class Comparable>
+void mergeSort(vector<T> &v, vector<T> &tmpArr, int left, int right, Comparable comp);
+template <typename T, class Comparable>
+void merge(vector<T> &v, vector<T> &tmpArr, int leftPos, int rightPos, int rightEnd, Comparable comp);
 
-template <class T>
-void mergeSort(vector<T> &v) {
+template <typename T, class Comparable>
+void mergeSort(vector<T> &v, Comparable comp) {
     vector<T> tmpArr(v.size());
-    mergeSort(v, tmpArr, 0, v.size()-1);
+    mergeSort(v, tmpArr, 0, v.size()-1, comp);
 }
 
-template <class T>
-void mergeSort(vector<T> &v, vector<T> &tmpArr, int left, int right) {
-    if (left < right){
+template <typename T, class Comparable>
+void mergeSort(vector<T> &v, vector<T> &tmpArr, int left, int right, Comparable comp) {
+    if (left < right) {
         int center = (left + right) / 2;
-        mergeSort(v, tmpArr, left, center);
-        mergeSort(v, tmpArr, center + 1, right);
-        merge(v, tmpArr, left, center +1, right);
+        mergeSort(v, tmpArr, left, center, comp);
+        mergeSort(v, tmpArr, center + 1, right, comp);
+        merge(v, tmpArr, left, center +1, right, comp);
     }
 }
 
-template <class T>
-void merge(vector<T> &v, vector<T> &tmpArr, int leftPos, int rightPos, int rightEnd) {
+template <typename T, class Comparable>
+void merge(vector<T> &v, vector<T> &tmpArr, int leftPos, int rightPos, int rightEnd, Comparable comp) {
     int leftEnd = rightPos - 1, tmpPos = leftPos;
     int numElements = rightEnd - leftPos + 1;
-    while ( leftPos <= leftEnd && rightPos <= rightEnd )
-        if ( v[leftPos] <= v[rightPos] )
+    while ((leftPos <= leftEnd) && (rightPos <= rightEnd))
+        if (comp(v[leftPos], v[rightPos])) // v[leftPos] <= v[rightPos]
             tmpArr[tmpPos++] = v[leftPos++];
         else
             tmpArr[tmpPos++] = v[rightPos++];
-    while ( leftPos <= leftEnd )
+    while (leftPos <= leftEnd)
         tmpArr[tmpPos++] = v[leftPos++];
-    while ( rightPos <= rightEnd )
+    while (rightPos <= rightEnd)
         tmpArr[tmpPos++] = v[rightPos++];
-    for ( int i = 0; i < numElements; i++, rightEnd-- )
+    for (int i = 0; i < numElements; i++, rightEnd--)
         v[rightEnd] = tmpArr[rightEnd];
 }
 
 // ---------------------------------------------------------------------------------------------------
 
-unsigned Empresa::otimEstafetas(bool &tarefaCompleta, vector<Estafeta> &E, vector<Encomenda> &P) {
-    mergeSort<Estafeta>(estafetas); // ordem descendente de capacidade
-    mergeSort<Encomenda>(encomendas); // ordem descendente de carga
-
-    // ir ocupando carrinhas ao maximo e ir contando as com um counter
-
-    return 0;
+bool compCapacidade(const Estafeta &e1, const Estafeta &e2) {
+    return e1.getVolMax() >= e2.getVolMax();
 }
+
+bool compCarga(const Encomenda &e1, const Encomenda &e2) {
+    return e1.getVol() >= e2.getVol();
+}
+
+unsigned Empresa::otimEstafetas(bool &tarefaCompleta) {
+    for (auto e : estafetas)
+        e.esvaziar();
+
+    /* Best Fit Decreasing */
+
+    mergeSort(estafetas, compCapacidade);
+    mergeSort(encomendas, compCarga);
+
+    tarefaCompleta = false;
+    int num = 0, eTotal = (int)estafetas.size(), pTotal = (int)encomendas.size();
+    vector<pair<int, int>> sobra(eTotal);
+
+    for (int i = 0; i < pTotal; i++) {
+        if (i == pTotal - 1)
+            tarefaCompleta = true;
+
+        if (num >= eTotal)
+            break;
+        else {
+            int carrinha = 0, minVol = INT_MAX/2, minPeso = INT_MAX/2;
+            int v = encomendas[i].getVol(), p = encomendas[i].getPeso();
+
+            for (int j = 0; j < num; j++) {
+                bool fit = (sobra[j].first >= v) && (sobra[j].second >= p);
+                if (fit && (sobra[j].first - v < minVol) && (sobra[j].second - p < minPeso)) {
+                    carrinha = j;
+                    minVol = sobra[j].first - v;
+                    minPeso = sobra[j].second - p;
+                }
+            }
+
+            if ((minVol == INT_MAX/2) && (minPeso == INT_MAX/2)) {
+                estafetas[num].addEncomenda(encomendas[i]);
+                sobra[num].first = estafetas[num].getVolMax() - v;
+                sobra[num].second = estafetas[num].getPesoMax() - p;
+                num++;
+            }
+            else {
+                estafetas[carrinha].addEncomenda(encomendas[i]);
+                sobra[carrinha].first -= v;
+                sobra[carrinha].second -= p;
+            }
+        }
+    }
+
+    return num;
+}
+
+// ---------------------------------------------------------------------------------------------------
 
 double Empresa::otimLucro(bool &tarefaCompleta, vector<Estafeta> &E, vector<Encomenda> &P) {
     sort(estafetas.begin(), estafetas.end(),

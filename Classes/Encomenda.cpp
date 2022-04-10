@@ -35,11 +35,11 @@ int Encomenda::getDuracao() const {
 }
 
 // ---------------------------------------------------------------------------------------------------
-
+/*
 bool Encomenda::operator<(const Encomenda &e) const {
     return vol > e.vol; // criterio de carga??
 }
-
+*/
 bool Encomenda::operator<=(const Encomenda &e) const {
     return vol >= e.vol; // criterio de carga??
 }

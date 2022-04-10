@@ -17,7 +17,7 @@ public:
     int getRecompensa() const;
     int getDuracao() const;
 
-    bool operator<(const Encomenda& e) const;
+    //bool operator<(const Encomenda& e) const;
     bool operator<=(const Encomenda& e) const;
     friend ostream& operator<<(ostream& out, const Encomenda& e);
 };

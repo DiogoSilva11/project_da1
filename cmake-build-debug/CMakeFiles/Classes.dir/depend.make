@@ -10,6 +10,7 @@ CMakeFiles/Classes.dir/Classes/Encomenda.cpp.obj: \
  ../Classes/Encomenda.cpp \
  ../Classes/Encomenda.h
 CMakeFiles/Classes.dir/Classes/Estafeta.cpp.obj: \
+ ../Classes/Encomenda.h \
  ../Classes/Estafeta.cpp \
  ../Classes/Estafeta.h
 CMakeFiles/Classes.dir/Classes/Menu.cpp.obj: \

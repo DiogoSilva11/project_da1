@@ -75,13 +75,24 @@ void Menu::estafetas() {
 }
 
 void Menu::otimEstafetas() {
-    unsigned numEstafetas;
-    bool tarefa = false;
-    vector<Estafeta> estafetasUsados;
-    vector<Encomenda> encomendasEntregues;
-    numEstafetas = empresa.otimEstafetas(tarefa, estafetasUsados, encomendasEntregues);
+    cout << endl;
 
-    // to do
+    bool tarefa = false;
+    unsigned numEstafetas = empresa.otimEstafetas(tarefa);
+
+    cout << "Numero minimo de estafetas: " << numEstafetas << endl;
+    string completo = tarefa ? "sim" : "nao";
+    cout << "Pedidos todos entregues: " << completo << endl;
+
+    cout << "\n[Estafetas]\n";
+    for (const auto &e : empresa.getEstafetas()) {
+        if (!e.getCarga().empty()) {
+            cout << "\n[" << e.getVolMax() << ", " << e.getPesoMax() << "]\n";
+            for (const auto &c : e.getCarga())
+                cout << "(" << c.getVol() << ", " << c.getPeso() << ") ";
+            cout << endl;
+        }
+    }
 
     goBack();
 }
@@ -93,7 +104,7 @@ void Menu::otimLucro() {
     vector<Encomenda> encomendasEntregues;
     lucro = empresa.otimLucro(tarefa, estafetasUsados, encomendasEntregues);
 
-    // to do
+    cout << endl << "Valor maximo de lucro: " << lucro << endl;
 
     goBack();
 }
@@ -104,7 +115,7 @@ void Menu::otimExpresso() {
     vector<Encomenda> encomendasEntregues;
     tempo = empresa.otimExpresso(tarefa, encomendasEntregues);
 
-    // to do
+    cout << endl << "Tempo medio minimo para entregas expresso: " << tempo << endl;
 
     goBack();
 }

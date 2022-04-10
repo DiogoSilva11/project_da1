@@ -6,11 +6,33 @@
 
 #IncludeRegexTransform: 
 
-C:/Users/HP/Desktop/P1_DA/Classes/Estafeta.cpp
+C:/Users/HP/Desktop/P1_DA/Classes/Empresa.cpp
+Empresa.h
+C:/Users/HP/Desktop/P1_DA/Classes/Empresa.h
+fstream
+-
+algorithm
+-
+
+C:/Users/HP/Desktop/P1_DA/Classes/Empresa.h
+Encomenda.h
+C:/Users/HP/Desktop/P1_DA/Classes/Encomenda.h
 Estafeta.h
 C:/Users/HP/Desktop/P1_DA/Classes/Estafeta.h
+iostream
+-
+vector
+-
+
+C:/Users/HP/Desktop/P1_DA/Classes/Encomenda.h
+iostream
+-
 
 C:/Users/HP/Desktop/P1_DA/Classes/Estafeta.h
 iostream
 -
+list
+-
+Encomenda.h
+C:/Users/HP/Desktop/P1_DA/Classes/Encomenda.h
 
