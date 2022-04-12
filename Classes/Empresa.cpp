@@ -177,13 +177,53 @@ unsigned Empresa::otimEstafetas(bool &tarefaCompleta) {
 
 // ---------------------------------------------------------------------------------------------------
 
+bool compCusto(const Estafeta &e1, const Estafeta &e2) {
+    return e1.getCusto() <= e2.getCusto();
+}
+
+bool compRecompensa(const Encomenda &e1, const Encomenda &e2) {
+    return e1.getRecompensa() > e2.getRecompensa();
+}
+
 int Empresa::otimLucro(bool &tarefaCompleta) {
     for (auto e : estafetas)
         e.esvaziar();
 
-    // to do
+    mergeSort(estafetas, compCusto);
+    mergeSort(encomendas, compRecompensa);
 
-    return 0;
+    vector<Encomenda> aux = encomendas;
+    int lucro = 0, eTotal = (int)estafetas.size();
+
+    for (int c = 0; c < eTotal; c++) {
+        int pTotal = (int)aux.size(), vol = estafetas[c].getVolMax(), peso = estafetas[c].getPesoMax();
+
+        vector<vector<int>> vK(pTotal + 1, vector<int>(vol + 1));
+        vector<vector<int>> pK(pTotal + 1, vector<int>(peso + 1));
+
+        for (int i = 0; i <= pTotal; i++) {
+            for (int v = 0, p = 0; v <= vol && p <= peso; v++, p++) {
+                int pVol = aux[i - 1].getVol(), pPeso = aux[i - 1].getPeso();
+
+                if (i == 0 || (v == 0 || p == 0)) {
+                    vK[i][v] = 0;
+                    vK[i][p] = 0;
+                }
+                else if ((pVol <= v) && (pPeso <= p)) {
+                    vK[i][v] = max(aux[i - 1].getRecompensa() + vK[i - 1][v - pVol], vK[i - 1][v]);
+                    pK[i][p] = max(aux[i - 1].getRecompensa() + pK[i - 1][p - pPeso], pK[i - 1][p]);
+                }
+                else {
+                    vK[i][v] = vK[i - 1][v];
+                    pK[i][p] = pK[i - 1][p];
+                }
+            }
+        }
+
+        lucro += vK[pTotal][vol] - estafetas[c].getCusto();
+    }
+
+    return lucro;
 }
 
 // ---------------------------------------------------------------------------------------------------

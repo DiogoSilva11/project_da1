@@ -83,7 +83,8 @@ void Menu::otimEstafetas() {
     cout << "\n[Estafetas]\n";
     for (const auto &e : empresa.getEstafetas()) {
         if (!e.getCarga().empty()) {
-            cout << "\n[" << e.getVolMax() << ", " << e.getPesoMax() << "]\n";
+            cout << "\nCapacidadeMax: [" << e.getVolMax() << ", " << e.getPesoMax() << "]\n";
+            cout << "Resto: [" << e.getRestoVol() << ", " << e.getRestoPeso() << "]\n";
             for (const auto &c : e.getCarga())
                 cout << "(" << c.getVol() << ", " << c.getPeso() << ") ";
             cout << endl;
