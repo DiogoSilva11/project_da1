@@ -9,6 +9,7 @@ Estafeta::Estafeta() {
     custo = 0;
     restoVol = volMax;
     restoPeso = pesoMax;
+    profit = -custo;
     carga.clear();
 }
 
@@ -19,6 +20,7 @@ Estafeta::Estafeta(int volMax, int pesoMax, int custo) {
     this->custo = custo;
     restoVol = volMax;
     restoPeso = pesoMax;
+    profit = -custo;
     carga.clear();
 }
 
@@ -48,6 +50,10 @@ int Estafeta::getRestoPeso() const {
     return restoPeso;
 }
 
+int Estafeta::getProfit() const {
+    return profit;
+}
+
 list<Encomenda> Estafeta::getCarga() const {
     return carga;
 }
@@ -57,10 +63,14 @@ list<Encomenda> Estafeta::getCarga() const {
 void Estafeta::addEncomenda(const Encomenda &e) {
     restoVol -= e.getVol();
     restoPeso -= e.getPeso();
+    profit += e.getRecompensa();
     carga.push_back(e);
 }
 
 void Estafeta::esvaziar() {
+    restoVol = volMax;
+    restoPeso = pesoMax;
+    profit = -custo;
     carga.clear();
 }
 

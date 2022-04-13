@@ -103,7 +103,21 @@ void Menu::otimLucro() {
     bool tarefa = false;
     lucro = empresa.otimLucro(tarefa);
 
+    cout << "\n[Estafetas]\n";
+    for (const auto &e : empresa.getEstafetas()) {
+        if (!e.getCarga().empty()) {
+            cout << "\nCapacidadeMax: [" << e.getVolMax() << ", " << e.getPesoMax() << "]\n";
+            cout << "Resto: [" << e.getRestoVol() << ", " << e.getRestoPeso() << "]\n";
+            cout << "Custo/Lucro: [" << e.getCusto() << "/" << e.getProfit() << "]\n";
+            for (const auto &c : e.getCarga())
+                cout << "(" << c.getRecompensa() << ") ";
+            cout << endl;
+        }
+    }
+
     cout << endl << "Valor maximo de lucro: " << lucro << endl;
+    string completo = tarefa ? "sim" : "nao";
+    cout << "Pedidos todos entregues: " << completo << endl;
 
     goBack();
 }

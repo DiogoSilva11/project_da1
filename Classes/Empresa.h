@@ -18,6 +18,8 @@ private:
 
     void encomendasListadas();
     void estafetasRegistados();
+
+    int profit(int ci, vector<Encomenda> &e);
 public:
     Empresa();
 
