@@ -38,7 +38,7 @@ void Menu::goBack() {
 }
 
 void Menu::mainMenu() const {
-    cout << endl;
+    cout << endl << string(120, '=') << endl;
     cout << " ========================================" << endl;
     cout << " ||          Logistica Urbana          ||" << endl;
     cout << " ||            para Entrega            ||" << endl;
@@ -57,9 +57,10 @@ void Menu::mainMenu() const {
 }
 
 void Menu::encomendas() {
-    cout << endl;
-    cout << "[Encomendas]\n\n";
-    cout << "volume   peso   recompensa   duracao" << endl;
+    cout << endl << string(120, '=') << endl;
+    cout << "[Encomendas]\n";
+    cout << endl << string(120, '-') << endl;
+    cout << "id      volume   peso   recompensa   duracao\n\n";
     for (const auto &e : empresa.getEncomendas())
         cout << e;
 
@@ -67,9 +68,10 @@ void Menu::encomendas() {
 }
 
 void Menu::estafetas() {
-    cout << endl;
-    cout << "[Estafetas]\n\n";
-    cout << "volMax   pesoMax   custo" << endl;
+    cout << endl << string(120, '=') << endl;
+    cout << "[Estafetas]\n";
+    cout << endl << string(120, '-') << endl;
+    cout << "volMax   pesoMax   custo\n\n";
     for (const auto &e : empresa.getEstafetas())
         cout << e;
 
@@ -80,18 +82,22 @@ void Menu::otimEstafetas() {
     bool tarefa = false;
     unsigned numEstafetas = empresa.otimEstafetas(tarefa);
 
-    cout << "\n[Estafetas]\n";
+    cout << endl << string(120, '=') << endl;
+    cout << "[Estafetas]\n";
     for (const auto &e : empresa.getEstafetas()) {
         if (!e.getCarga().empty()) {
-            cout << "\nCapacidadeMax: [" << e.getVolMax() << ", " << e.getPesoMax() << "]\n";
+            cout << endl << string(120, '-') << endl;
+            cout << "CapacidadeMax: [" << e.getVolMax() << ", " << e.getPesoMax() << "]\n";
             cout << "Resto: [" << e.getRestoVol() << ", " << e.getRestoPeso() << "]\n";
+            cout << "\n(id, vol, peso)\n\n";
             for (const auto &c : e.getCarga())
-                cout << "(" << c.getVol() << ", " << c.getPeso() << ") ";
+                cout << "(" << c.getId() << ", " << c.getVol() << ", " << c.getPeso() << ") ";
             cout << endl;
         }
     }
 
-    cout << endl << "Numero minimo de estafetas: " << numEstafetas << endl;
+    cout << endl << string(120, '-') << endl;
+    cout << "Numero minimo de estafetas: " << numEstafetas << endl;
     string completo = tarefa ? "sim" : "nao";
     cout << "Pedidos todos entregues: " << completo << endl;
 
@@ -99,23 +105,34 @@ void Menu::otimEstafetas() {
 }
 
 void Menu::otimLucro() {
+    cout << "\nA processar...\n";
+
     double lucro;
     bool tarefa = false;
     lucro = empresa.otimLucro(tarefa);
 
-    cout << "\n[Estafetas]\n";
+    int num = 0;
+
+    cout << endl << string(120, '=') << endl;
+    cout << "[Estafetas]\n";
     for (const auto &e : empresa.getEstafetas()) {
         if (!e.getCarga().empty()) {
-            cout << "\nCapacidadeMax: [" << e.getVolMax() << ", " << e.getPesoMax() << "]\n";
+            num++;
+            cout << endl << string(120, '-') << endl;
+            cout << "CapacidadeMax: [" << e.getVolMax() << ", " << e.getPesoMax() << "]\n";
             cout << "Resto: [" << e.getRestoVol() << ", " << e.getRestoPeso() << "]\n";
-            cout << "Custo/Lucro: [" << e.getCusto() << "/" << e.getProfit() << "]\n";
+            cout << "Custo do estafeta: [" << e.getCusto() << "]\n";
+            cout << "Lucro feito: [" << e.getProfit() << "]\n";
+            cout << "\n(id, recompensa)\n\n";
             for (const auto &c : e.getCarga())
-                cout << "(" << c.getRecompensa() << ") ";
+                cout << "(" << c.getId() << ", " << c.getRecompensa() << ") ";
             cout << endl;
         }
     }
 
-    cout << endl << "Valor maximo de lucro: " << lucro << endl;
+    cout << endl << string(120, '-') << endl;
+    cout << "Valor maximo de lucro: " << lucro << endl;
+    cout << "Numero de estafetas: " << num << endl;
     string completo = tarefa ? "sim" : "nao";
     cout << "Pedidos todos entregues: " << completo << endl;
 
@@ -128,17 +145,20 @@ void Menu::otimExpresso() {
     vector<Encomenda> encomendasEntregues;
     tempo = empresa.otimExpresso(tarefa, encomendasEntregues);
 
-    cout << "\n[Encomendas]\n";
-    for (const auto &e : encomendasEntregues) {
-        cout << "Dur: " << e.getDuracao() << endl;
-    }
+    cout << endl << string(120, '=') << endl;
+    cout << "[Encomendas]\n";
+    cout << endl << string(120, '-') << endl;
+    cout << "(id, duracao)\n\n";
+    for (const auto &e : encomendasEntregues)
+        cout << "(" << e.getId() << ", " << e.getDuracao() << ")\n";
 
     int seg, hrs, min;
     seg = (int)(round(tempo));
     min = seg / 60;
     hrs = min / 60;
 
-    cout << endl << "Tempo medio minimo de entregas expresso: " << tempo;
+    cout << endl << string(120, '-') << endl;
+    cout << "Tempo medio minimo de entregas expresso: " << tempo;
     cout << " (" << (int)(hrs) << ":" << (int)(min % 60) << ":" << (int)(seg % 60) << ")" << endl;
     string completo = tarefa ? "sim" : "nao";
     cout << "Pedidos todos entregues: " << completo << endl;

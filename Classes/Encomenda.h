@@ -7,11 +7,12 @@ using namespace std;
 
 class Encomenda {
 private:
-    int vol, peso, recompensa, duracao;
+    int id, vol, peso, recompensa, duracao;
 public:
     Encomenda();
-    Encomenda(int vol, int peso, int recompensa, int duracao);
+    Encomenda(int id, int vol, int peso, int recompensa, int duracao);
 
+    int getId() const;
     int getVol() const;
     int getPeso() const;
     int getRecompensa() const;

@@ -25,17 +25,18 @@ void Empresa::encomendasListadas() {
     getline(f, firstLine);
 
     string vol, peso, recompensa, duracao;
-    int v, p, r, d;
+    int v, p, r, d, id = 0;
     while (getline(f, vol, ' ')) {
         getline(f, peso, ' ');
         getline(f, recompensa, ' ');
         getline(f, duracao);
 
+        id++;
         v = stoi(vol);
         p = stoi(peso);
         r = stoi(recompensa);
         d = stoi(duracao);
-        Encomenda e(v, p, r, d);
+        Encomenda e(id, v, p, r, d);
         encomendas.push_back(e);
     }
 
@@ -186,48 +187,46 @@ bool compRecompensa(const Encomenda &e1, const Encomenda &e2) {
 }
 
 int Empresa::profit(int ci, vector<Encomenda> &e) {
+    /* Lucro máximo no caso desta carrinha */
+
     int pTotal = (int)e.size(), vol = estafetas[ci].getVolMax(), peso = estafetas[ci].getPesoMax();
-    vector<vector<int>> vK(pTotal + 1, vector<int>(vol + 1));
-    vector<vector<int>> pK(pTotal + 1, vector<int>(peso + 1));
+    vector<vector<vector<int>>> K(pTotal + 1,vector<vector<int>>(vol + 1, vector<int>(peso + 1)));
 
     for (int i = 0; i <= pTotal; i++) {
-        for (int v = 0, p = 0; v <= vol && p <= peso; v++, p++) {
-            int pVol = e[i - 1].getVol(), pPeso = e[i - 1].getPeso();
-
-            if (i == 0 || (v == 0 || p == 0)) {
-                vK[i][v] = 0;
-                vK[i][p] = 0;
-            }
-            else if ((pVol <= v) && (pPeso <= p)) {
-                vK[i][v] = max(e[i - 1].getRecompensa() + vK[i - 1][v - pVol], vK[i - 1][v]);
-                pK[i][p] = max(e[i - 1].getRecompensa() + pK[i - 1][p - pPeso], pK[i - 1][p]);
-            }
-            else {
-                vK[i][v] = vK[i - 1][v];
-                pK[i][p] = pK[i - 1][p];
+        for (int v = 0; v <= vol; v++) {
+            for (int p = 0; p <= peso; p++) {
+                if (i == 0 || v == 0 || p == 0)
+                    K[i][v][p] = 0;
+                else if ((v < e[i - 1].getVol()) || (p < e[i - 1].getPeso()))
+                    K[i][v][p] = K[i - 1][v][p];
+                else
+                    K[i][v][p] = max(e[i - 1].getRecompensa() + K[i - 1][v - e[i - 1].getVol()][p - e[i - 1].getPeso()], K[i - 1][v][p]);
             }
         }
     }
 
-    int res = vK[pTotal][vol], wv = vol, wp = peso;
+    int lucro = K[pTotal][vol][peso] - estafetas[ci].getCusto();
+
+    /* Colocar encomendas na carrinha */
+
+    int res = K[pTotal][vol][peso], wv = vol, wp = peso;
     vector<int> aux;
 
     for (int i = pTotal; i > 0 && res > 0; i--) {
-        if (res == vK[i - 1][wv])
+        if (res == K[i - 1][wv][wp])
             continue;
         else {
             estafetas[ci].addEncomenda(e[i - 1]);
             aux.push_back(i - 1);
             res -= e[i - 1].getRecompensa();
             wv -= e[i - 1].getVol();
+            wp -= e[i - 1].getPeso();
         }
     }
 
     for (const auto &i : aux)
         e.erase(e.begin() + i);
 
-    int lucro = vK[pTotal][vol] - estafetas[ci].getCusto();
-    cout << lucro << endl;
     return lucro;
 }
 
@@ -241,8 +240,14 @@ int Empresa::otimLucro(bool &tarefaCompleta) {
     vector<Encomenda> aux = encomendas;
     int lucroTotal = 0;
 
-    for (int c = 0; c < (int)estafetas.size(); c++)
+    for (int c = 0; c < (int)estafetas.size(); c++) {
+        if (aux.empty()) {
+            tarefaCompleta = true;
+            break;
+        }
+
         lucroTotal += profit(c, aux);
+    }
 
     return lucroTotal;
 }
@@ -263,12 +268,12 @@ double Empresa::otimExpresso(bool &tarefaCompleta, vector<Encomenda> &P) {
         if (i == (int)encomendas.size() - 1)
             tarefaCompleta = true;
 
-        if (s + encomendas[i].getDuracao() > HOR_COMERCIAL)
+        if (s + encomendas[i].getDuracao() > HOR_COMERCIAL) // 3 8 10 15
             break;
         else {
             total++;
-            s += encomendas[i].getDuracao();
-            m += s;
+            s += encomendas[i].getDuracao(); // 36
+            m += s; // 71
             P.push_back(encomendas[i]);
         }
     }
