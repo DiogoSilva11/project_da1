@@ -71,7 +71,7 @@ void Menu::estafetas() {
     cout << endl << string(120, '=') << endl;
     cout << "[Estafetas]\n";
     cout << endl << string(120, '-') << endl;
-    cout << "volMax   pesoMax   custo\n\n";
+    cout << "matricula   volMax   pesoMax   custo\n\n";
     for (const auto &e : empresa.getEstafetas())
         cout << e;
 
@@ -87,6 +87,7 @@ void Menu::otimEstafetas() {
     for (const auto &e : empresa.getEstafetas()) {
         if (!e.getCarga().empty()) {
             cout << endl << string(120, '-') << endl;
+            cout << "Matricula: [" << e.getMatricula() << "]\n";
             cout << "CapacidadeMax: [" << e.getVolMax() << ", " << e.getPesoMax() << "]\n";
             cout << "Resto: [" << e.getRestoVol() << ", " << e.getRestoPeso() << "]\n";
             cout << "\n(id, vol, peso)\n\n";
@@ -107,9 +108,8 @@ void Menu::otimEstafetas() {
 void Menu::otimLucro() {
     cout << "\nA processar...\n";
 
-    double lucro;
     bool tarefa = false;
-    lucro = empresa.otimLucro(tarefa);
+    double lucro = empresa.otimLucro(tarefa);
 
     int num = 0;
 
@@ -119,6 +119,7 @@ void Menu::otimLucro() {
         if (!e.getCarga().empty()) {
             num++;
             cout << endl << string(120, '-') << endl;
+            cout << "Matricula: [" << e.getMatricula() << "]\n";
             cout << "CapacidadeMax: [" << e.getVolMax() << ", " << e.getPesoMax() << "]\n";
             cout << "Resto: [" << e.getRestoVol() << ", " << e.getRestoPeso() << "]\n";
             cout << "Custo do estafeta: [" << e.getCusto() << "]\n";

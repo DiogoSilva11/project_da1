@@ -13,8 +13,8 @@ Estafeta::Estafeta() {
     carga.clear();
 }
 
-Estafeta::Estafeta(int volMax, int pesoMax, int custo) {
-    matricula = "";
+Estafeta::Estafeta(string matricula, int volMax, int pesoMax, int custo) {
+    this->matricula = matricula;
     this->volMax = volMax;
     this->pesoMax = pesoMax;
     this->custo = custo;
@@ -79,11 +79,12 @@ void Estafeta::esvaziar() {
 ostream& operator<<(ostream& out, const Estafeta& e){
     string vol = to_string(e.volMax), peso = to_string(e.pesoMax), custo = to_string(e.custo);
 
+    string m = e.matricula + string(abs(11 - (int)e.matricula.length()), ' ');
     string v = vol + string(abs(8 - (int)vol.length()), ' ');
     string p = peso + string(abs(9 - (int)peso.length()), ' ');
     string c = custo + string(abs(5 - (int)custo.length()), ' ');
 
-    out << v << ' ' << p << ' ' << c << '\n';
+    out << m << ' ' << v << ' ' << p << ' ' << c << '\n';
     return out;
 }
 

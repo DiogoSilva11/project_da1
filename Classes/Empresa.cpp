@@ -55,16 +55,17 @@ void Empresa::estafetasRegistados() {
     string firstLine;
     getline(f, firstLine);
 
-    string vol, peso, custo;
+    string matricula, vol, peso, custo;
     int v, p, c;
-    while (getline(f, vol, ' ')) {
+    while (getline(f, matricula, ' ')) {
+        getline(f, vol, ' ');
         getline(f, peso, ' ');
         getline(f, custo);
 
         v = stoi(vol);
         p = stoi(peso);
         c = stoi(custo);
-        Estafeta e(v, p, c);
+        Estafeta e(matricula, v, p, c);
         estafetas.push_back(e);
     }
 
@@ -126,18 +127,28 @@ void merge(vector<T> &v, vector<T> &tmpArr, int leftPos, int rightPos, int right
 // ---------------------------------------------------------------------------------------------------
 
 bool compCapacidade(const Estafeta &e1, const Estafeta &e2) {
-    return (e1.getVolMax() + e1.getPesoMax()) > (e2.getVolMax() + e2.getPesoMax());
+    int volDif = abs(e1.getVolMax() - e2.getVolMax());
+    int pesoDif = abs(e1.getPesoMax() - e2.getPesoMax());
+
+    if (volDif >= pesoDif)
+        return e1.getVolMax() > e2.getVolMax();
+    else
+        return e1.getPesoMax() > e2.getPesoMax();
 }
 
 bool compCarga(const Encomenda &e1, const Encomenda &e2) {
-    return (e1.getVol() + e1.getPeso()) > (e2.getVol() + e2.getPeso());
+    int volDif = abs(e1.getVol() - e2.getVol());
+    int pesoDif = abs(e1.getPeso() - e2.getPeso());
+
+    if (volDif >= pesoDif)
+        return e1.getVol() > e2.getVol();
+    else
+        return e1.getPeso() > e2.getPeso();
 }
 
 unsigned Empresa::otimEstafetas(bool &tarefaCompleta) {
-    for (auto e : estafetas)
+    for (auto &e : estafetas)
         e.esvaziar();
-
-    /* Best Fit Decreasing */
 
     mergeSort(estafetas, compCapacidade);
     mergeSort(encomendas, compCarga);
@@ -231,7 +242,7 @@ int Empresa::profit(int ci, vector<Encomenda> &e) {
 }
 
 int Empresa::otimLucro(bool &tarefaCompleta) {
-    for (auto e : estafetas)
+    for (auto &e : estafetas)
         e.esvaziar();
 
     mergeSort(estafetas, compCusto);
@@ -278,8 +289,8 @@ double Empresa::otimExpresso(bool &tarefaCompleta, vector<Encomenda> &P) {
         }
     }
 
-    double r = m * 1.0, t = total * 1.0;
-    return r / t;
+    double tempo = (double)(m) / (double)(total);
+    return tempo;
 }
 
 // ---------------------------------------------------------------------------------------------------

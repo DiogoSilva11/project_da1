@@ -16,7 +16,7 @@ private:
     list<Encomenda> carga;
 public:
     Estafeta();
-    Estafeta(int volMax, int pesoMax, int custo);
+    Estafeta(string matricula, int volMax, int pesoMax, int custo);
 
     string getMatricula() const;
     int getVolMax() const;
