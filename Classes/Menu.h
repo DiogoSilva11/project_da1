@@ -13,7 +13,7 @@ private:
     /**
      * @brief Verifica se um input é válido (checka flags)
      *
-     * @return Retorna true se o input for válido e falso em caso contrário
+     * @return Retorna true se o input for válido e false em caso contrário
      */
     bool pass();
 
