@@ -85,6 +85,7 @@ void Menu::otimEstafetas() {
     cout << endl << string(120, '=') << endl;
     cout << "[Estafetas]\n";
     for (const auto &e : empresa.getEstafetas()) {
+        /* mostrar carrinhas onde se colocaram encomendas */
         if (!e.getCarga().empty()) {
             cout << endl << string(120, '-') << endl;
             cout << "Matricula: [" << e.getMatricula() << "]\n";
@@ -116,6 +117,7 @@ void Menu::otimLucro() {
     cout << endl << string(120, '=') << endl;
     cout << "[Estafetas]\n";
     for (const auto &e : empresa.getEstafetas()) {
+        /* mostrar carrinhas onde se colocaram encomendas */
         if (!e.getCarga().empty()) {
             num++;
             cout << endl << string(120, '-') << endl;
@@ -160,6 +162,7 @@ void Menu::otimExpresso() {
 
     cout << endl << string(120, '-') << endl;
     cout << "Tempo medio minimo de entregas expresso: " << tempo;
+    /* mostrar tempo em horas:minutos:segundos */
     cout << " (" << (int)(hrs) << ":" << (int)(min % 60) << ":" << (int)(seg % 60) << ")" << endl;
     string completo = tarefa ? "sim" : "nao";
     cout << "Pedidos todos entregues: " << completo << endl;

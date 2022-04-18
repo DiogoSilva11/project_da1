@@ -84,44 +84,86 @@ vector<Estafeta> Empresa::getEstafetas() const {
 
 // ---------------------------------------------------------------------------------------------------
 
+/* ordenação recorrendo ao algoritmo de merge sort */
+
+/**
+ * @brief Função (externa), geradora da ordenação
+ *
+ * @tparam T Objeto de uma determinada classe
+ * @tparam Comparable Função de comparação de elementos T
+ * @param v Vetor a ser ordenado
+ * @param comp Função de comparação
+ */
 template <typename T, class Comparable>
 void mergeSort(vector<T> &v, Comparable comp);
+
+/**
+ * @brief Método interno, faz chamadas recursivas
+ *
+ * @tparam T Objeto de uma determinada classe
+ * @tparam Comparable Função de comparação de elementos T
+ * @param v Vetor a ser ordenado
+ * @param tmp Vetor auxiliar
+ * @param left Posição mais à esquerda
+ * @param right Posição mais à direita
+ * @param comp Função de comparação
+ */
 template <typename T, class Comparable>
-void mergeSort(vector<T> &v, vector<T> &tmpArr, int left, int right, Comparable comp);
+void mergeSort(vector<T> &v, vector<T> &tmp, int left, int right, Comparable comp);
+
+/**
+ * @brief Junção de partes ordenadas do vetor
+ *
+ * @tparam T Objeto de uma determinada classe
+ * @tparam Comparable Função de comparação de elementos T
+ * @param v Vetor a ser ordenado
+ * @param tmp Vetor auxiliar
+ * @param leftPos Posição mais à esquerda
+ * @param rightPos Posição onde se inicia a secção direita
+ * @param rightEnd Posição mais à direita
+ * @param comp Função de comparação
+ */
 template <typename T, class Comparable>
-void merge(vector<T> &v, vector<T> &tmpArr, int leftPos, int rightPos, int rightEnd, Comparable comp);
+void merge(vector<T> &v, vector<T> &tmp, int leftPos, int rightPos, int rightEnd, Comparable comp);
 
 template <typename T, class Comparable>
 void mergeSort(vector<T> &v, Comparable comp) {
-    vector<T> tmpArr(v.size());
-    mergeSort(v, tmpArr, 0, v.size()-1, comp);
+    vector<T> tmp(v.size());
+    mergeSort(v, tmp, 0, v.size()-1, comp); // chamar método interno
 }
 
 template <typename T, class Comparable>
-void mergeSort(vector<T> &v, vector<T> &tmpArr, int left, int right, Comparable comp) {
+void mergeSort(vector<T> &v, vector<T> &tmp, int left, int right, Comparable comp) {
     if (left < right) {
         int center = (left + right) / 2;
-        mergeSort(v, tmpArr, left, center, comp);
-        mergeSort(v, tmpArr, center + 1, right, comp);
-        merge(v, tmpArr, left, center +1, right, comp);
+        mergeSort(v, tmp, left, center, comp); // ordenar secção esquerda
+        mergeSort(v, tmp, center + 1, right, comp); // ordenar secção direita
+        merge(v, tmp, left, center +1, right, comp); // juntar as duas secções ordenadas
     }
 }
 
 template <typename T, class Comparable>
-void merge(vector<T> &v, vector<T> &tmpArr, int leftPos, int rightPos, int rightEnd, Comparable comp) {
+void merge(vector<T> &v, vector<T> &tmp, int leftPos, int rightPos, int rightEnd, Comparable comp) {
     int leftEnd = rightPos - 1, tmpPos = leftPos;
     int numElements = rightEnd - leftPos + 1;
-    while ((leftPos <= leftEnd) && (rightPos <= rightEnd))
+
+    /* comparar elementos da esquerda com os da direita */
+    while ((leftPos <= leftEnd) && (rightPos <= rightEnd)) {
         if (comp(v[leftPos], v[rightPos])) // v[leftPos] <= v[rightPos]
-            tmpArr[tmpPos++] = v[leftPos++];
+            tmp[tmpPos++] = v[leftPos++];
         else
-            tmpArr[tmpPos++] = v[rightPos++];
+            tmp[tmpPos++] = v[rightPos++];
+    }
+
+    /* acabar de percorrer elementos */
     while (leftPos <= leftEnd)
-        tmpArr[tmpPos++] = v[leftPos++];
+        tmp[tmpPos++] = v[leftPos++];
     while (rightPos <= rightEnd)
-        tmpArr[tmpPos++] = v[rightPos++];
+        tmp[tmpPos++] = v[rightPos++];
+
+    /* atualizar valores do vetor principal */
     for (int i = 0; i < numElements; i++, rightEnd--)
-        v[rightEnd] = tmpArr[rightEnd];
+        v[rightEnd] = tmp[rightEnd];
 }
 
 // ---------------------------------------------------------------------------------------------------
@@ -217,6 +259,8 @@ int Empresa::profit(int ci, vector<Encomenda> &e) {
     }
 
     int lucro = K[pTotal][vol][peso] - estafetas[ci].getCusto();
+    if (lucro < 0)
+        return 0;
 
     /* Colocar encomendas na carrinha */
 
