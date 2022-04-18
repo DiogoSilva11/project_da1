@@ -6,7 +6,7 @@
 using namespace std;
 
 /**
- * Encomenda a ser entregue
+ * @brief Encomenda a ser entregue
  */
 class Encomenda {
 private:

@@ -12,7 +12,7 @@ using namespace std;
 #define HOR_COMERCIAL 28800 /**< Segundos em 8h (9:00 - 17:00) */
 
 /**
- * Empresa com encomendas a entregar e estafetas registados
+ * @brief Empresa com encomendas a entregar e estafetas registados
  */
 class Empresa {
 private:
