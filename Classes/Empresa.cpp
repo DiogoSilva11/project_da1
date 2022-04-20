@@ -173,18 +173,12 @@ void merge(vector<T> &v, vector<T> &tmp, int leftPos, int rightPos, int rightEnd
  *
  * @param e1 Estafeta
  * @param e2 Estafeta
- * @return Retorna true se o primeiro estafeta tiver um maior valor
- *         para a variável onde surge uma maior discrepância entre
- *         os dois elementos, false em caso contrário
+ * @return Retorna true se o primeiro estafeta tiver um valor de produto
+ *         entre o volume e o peso superior ao produto do segundo, false
+ *         em caso contrário
  */
 bool compCapacidade(const Estafeta &e1, const Estafeta &e2) {
-    int volDif = abs(e1.getVolMax() - e2.getVolMax()); // diferença de volumes
-    int pesoDif = abs(e1.getPesoMax() - e2.getPesoMax()); // diferença de pesos
-
-    if (volDif >= pesoDif)
-        return e1.getVolMax() > e2.getVolMax(); // compara pelo volume
-    else
-        return e1.getPesoMax() > e2.getPesoMax(); // compara pelo peso
+    return (e1.getVolMax() * e1.getPesoMax()) > (e2.getVolMax() * e2.getPesoMax());
 }
 
 /**
@@ -192,18 +186,12 @@ bool compCapacidade(const Estafeta &e1, const Estafeta &e2) {
  *
  * @param e1 Encomenda
  * @param e2 Encomenda
- * @return Retorna true se a primeira encomenda tiver um maior valor
- *         para a variável onde surge uma maior discrepância entre
- *         os dois elementos, false em caso contrário
+ * @return Retorna true se a primeira encomenda tiver um valor de produto
+ *         entre o volume e o peso superior ao produto da segunda, false
+ *         em caso contrário
  */
 bool compCarga(const Encomenda &e1, const Encomenda &e2) {
-    int volDif = abs(e1.getVol() - e2.getVol()); // diferença de volumes
-    int pesoDif = abs(e1.getPeso() - e2.getPeso()); // diferença de pesos
-
-    if (volDif >= pesoDif)
-        return e1.getVol() > e2.getVol(); // compara pelo volume
-    else
-        return e1.getPeso() > e2.getPeso(); // compara pelo peso
+    return (e1.getVol() * e1.getPeso()) > (e2.getVol() * e2.getPeso());
 }
 
 unsigned Empresa::otimEstafetas(bool &tarefaCompleta) {
@@ -259,23 +247,14 @@ unsigned Empresa::otimEstafetas(bool &tarefaCompleta) {
  * @param e1 Estafeta
  * @param e2 Estafeta
  * @return Retorna true se o primeiro estafeta tiver um
- *         valor menor ou igual de custo em relação ao
- *         segundo, false em caso contrário
+ *         valor maior de capacidade por custo em
+ *         relação ao segundo, false em caso contrário
  */
 bool compCusto(const Estafeta &e1, const Estafeta &e2) {
-    return e1.getCusto() <= e2.getCusto();
-}
+    double r1 = ((double)(e1.getVolMax() * e1.getPesoMax()) / (double)e1.getCusto());
+    double r2 = ((double)(e2.getVolMax() * e2.getPesoMax()) / (double)e2.getCusto());
 
-/**
- * @brief Compara encomendas de acordo com as respetivas recompensas
- *
- * @param e1 Encomenda
- * @param e2 Encomenda
- * @return Retorna true se a recompensa da primeira encomenda
- *         for superior à da segunda, false em caso contrário
- */
-bool compRecompensa(const Encomenda &e1, const Encomenda &e2) {
-    return e1.getRecompensa() > e2.getRecompensa();
+    return r1 > r2;
 }
 
 int Empresa::profit(int ci, vector<Encomenda> &e) {
@@ -334,8 +313,7 @@ int Empresa::otimLucro(bool &tarefaCompleta) {
     for (auto &e : estafetas)
         e.esvaziar(); // retirar todas as encomendas das carrinhas (reset geral)
 
-    mergeSort(estafetas, compCusto); // ordem crescente de custo
-    mergeSort(encomendas, compRecompensa); // ordem decrescente de recompensa
+    mergeSort(estafetas, compCusto); // ordem decrescente de capacidade por custo
 
     vector<Encomenda> aux = encomendas; // encomendas que faltam ser distribuídas pelas carrinhas
     int lucroTotal = 0;

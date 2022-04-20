@@ -40,6 +40,9 @@ CMakeFiles/Classes.dir/Classes/tests.cpp.obj: \
  ../lib/googletest-master/googletest/include/gtest/internal/gtest-port.h \
  ../lib/googletest-master/googletest/include/gtest/internal/gtest-string.h \
  ../lib/googletest-master/googletest/include/gtest/internal/gtest-type-util.h \
+ ../Classes/Empresa.h \
+ ../Classes/Encomenda.h \
+ ../Classes/Estafeta.h \
  ../Classes/tests.cpp
 CMakeFiles/Classes.dir/main.cpp.obj: \
  ../lib/googletest-master/googletest/include/gtest/gtest-death-test.h \
